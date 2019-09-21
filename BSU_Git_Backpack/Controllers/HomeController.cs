@@ -26,5 +26,19 @@ namespace BSU_Git_Backpack.Controllers
 
             return View();
         }
+
+        public ActionResult AccountManagement()
+        {
+            ViewBag.Message = "Your account management page.";
+
+            return View();
+        }
+
+        public ActionResult CreateAccount()
+        {
+            ViewBag.Message = "Your account management page.";
+
+            return View();
+        }
     }
 }
