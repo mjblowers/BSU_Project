@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using BSU_Git_Backpack.Services;
+using Google.Apis.Auth.OAuth2.Mvc;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace BSU_Git_Backpack.Controllers
@@ -39,6 +39,21 @@ namespace BSU_Git_Backpack.Controllers
             ViewBag.Message = "Your account management page.";
 
             return View();
+        }
+
+        public async Task<ActionResult> IndexAsync(CancellationToken cancellationToken)
+        {
+            var result = await new AuthorizationCodeMvcApp(this, new AppFlowMetadata()).
+                AuthorizeAsync(cancellationToken);
+
+            if (result.Credential != null)
+            {
+                return View();
+            }
+            else
+            {
+                return new RedirectResult(result.RedirectUri);
+            }
         }
     }
 }
