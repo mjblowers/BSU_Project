@@ -1,5 +1,7 @@
 ﻿using BSU_Git_Backpack.Services;
 using Google.Apis.Auth.OAuth2.Mvc;
+using Google.Apis.Services;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -48,10 +50,19 @@ namespace BSU_Git_Backpack.Controllers
 
             if (result.Credential != null)
             {
+                var oauthService = new Google.Apis.Oauth2.v2.Oauth2Service(
+                    new BaseClientService.Initializer()
+                    {
+                        HttpClientInitializer = result.Credential,
+                        ApplicationName = "Mike Test"
+                    });
+                var userInfo = await oauthService.Userinfo.Get().ExecuteAsync();
+                Console.WriteLine(result.Credential.UserId);
                 return View();
             }
             else
             {
+                Console.WriteLine("null credential seen");
                 return new RedirectResult(result.RedirectUri);
             }
         }
