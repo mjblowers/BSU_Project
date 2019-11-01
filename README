@@ -1,0 +1,28 @@
+This is just a quick tutorial if you are uncomfortable with using git.
+
+Clone the repo to your local system.
+
+You should be on the master branch, you can check by doing 'git branch'
+
+Checkout your own repo by doing a 'git checkout -b <name of your branch>'
+
+Do your thing.  
+
+Git add .
+Git commit -m "<name of your branch> your message here"
+Git push <name of your branch?
+
+If someone has pushed something to the master branch, either 'git stash' changes you are working on or commit them to your branch and do a :
+
+git checkout master
+git pull
+git checkout <name of your branch>
+git pull origin master
+
+resolve any merge conflicts and push them up and continue working.
+
+When you are ready to push your changes to master and have it committed :
+
+git push origin --set-upstream <name of your branch>
+
+
