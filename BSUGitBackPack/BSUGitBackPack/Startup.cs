@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -52,7 +53,7 @@ namespace MvcMovie
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthorization();  
 
             app.UseEndpoints(endpoints =>
             {
@@ -61,5 +62,15 @@ namespace MvcMovie
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+        //public Task<AuthorizationPolicy> GetFallbackPolicyAsync()
+        //{
+        //    var result = new AuthorizationPolicyBuilder();
+        //    result = result.RequireAssertion(context =>
+        //    {
+        //        return true;
+        //    });
+
+        //    return Task.FromResult(result.Build());
+        //}
     }
 }
