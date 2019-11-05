@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using MvcMovie.Data;
-using MvcMovie.Models;
+using BSUGitBackPack.Data;
+using BSUGitBackPack.Models;
 using System;
 
-namespace MvcMovie
+namespace BSUGitBackPack
 {
     public class Program
     {

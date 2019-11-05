@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MvcMovie.Models;
+using BSUGitBackPack.Models;
 
-namespace MvcMovie.Data
+namespace BSUGitBackPack.Data
 {
     public class BSUStudentContext : DbContext
     {
@@ -11,5 +11,6 @@ namespace MvcMovie.Data
         }
 
         public DbSet<Student> Student { get; set; }
+        public DbSet<Class> Class { get; set; }
     }
 }

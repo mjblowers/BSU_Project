@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MvcMovie.Data;
-using MvcMovie.Models;
+using BSUGitBackPack.Data;
+using BSUGitBackPack.Models;
 
-namespace MvcMovie.Controllers
+namespace BSUGitBackPack.Controllers
 {
     public class StudentsController : Controller
     {

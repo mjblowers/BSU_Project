@@ -10,9 +10,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MvcMovie.Data;
+using BSUGitBackPack.Data;
 
-namespace MvcMovie
+namespace BSUGitBackPack
 {
     public class Startup
     {
@@ -27,9 +27,6 @@ namespace MvcMovie
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
-            services.AddDbContext<MvcMovieContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
 
             services.AddDbContext<BSUStudentContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("BSUStudentContext")));

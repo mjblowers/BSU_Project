@@ -1,60 +1,49 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MvcMovie.Data;
+using BSUGitBackPack.Data;
 using System;
 using System.Linq;
 
-namespace MvcMovie.Models
+namespace BSUGitBackPack.Models
 {
     public static class SeedData
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new MvcMovieContext(
+            using (var context = new BSUStudentContext(
                 serviceProvider.GetRequiredService<
-                    DbContextOptions<MvcMovieContext>>()))
+                    DbContextOptions<BSUStudentContext>>()))
             {
                 // Look for any movies.
-                if (context.Movie.Any())
+                if (context.Class.Any())
                 {
                     return;   // DB has been seeded
                 }
 
-                context.Movie.AddRange(
-                    new Movie
+                context.Class.AddRange(
+                    new Class
                     {
-                        Title = "When Harry Met Sally",
-                        ReleaseDate = DateTime.Parse("1989-2-12"),
-                        Genre = "Romantic Comedy",
-                        Rating = "R",
-                        Price = 7.99M
+                        Prefix = "CS",
+                        Number = 453,
+                        Semester = "F",
+                        Year = 18
+                        
                     },
 
-                    new Movie
+                    new Class
                     {
-                        Title = "Ghostbusters ",
-                        ReleaseDate = DateTime.Parse("1984-3-13"),
-                        Genre = "Comedy",
-                        Rating = "G",
-                        Price = 8.99M
+                        Prefix = "CS",
+                        Number = 481,
+                        Semester = "S",
+                        Year = 19
                     },
 
-                    new Movie
+                    new Class
                     {
-                        Title = "Ghostbusters 2",
-                        ReleaseDate = DateTime.Parse("1986-2-23"),
-                        Genre = "Comedy",
-                        Rating = "PG",
-                        Price = 9.99M
-                    },
-
-                    new Movie
-                    {
-                        Title = "Rio Bravo",
-                        ReleaseDate = DateTime.Parse("1959-4-15"),
-                        Genre = "Western",
-                        Rating = "X",
-                        Price = 3.99M
+                        Prefix = "CS-HU",
+                        Number = 250,
+                        Semester = "Su",
+                        Year = 19
                     }
                 );
                 context.SaveChanges();
