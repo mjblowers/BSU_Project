@@ -36,6 +36,6 @@ namespace BSUGitBackPack.Models
 
         [Required]
         [ForeignKey("ClassForeignKey")]
-        public Class ClassFK { get; set; }
+        public int ClassFK { get; set; }
     }
 }
