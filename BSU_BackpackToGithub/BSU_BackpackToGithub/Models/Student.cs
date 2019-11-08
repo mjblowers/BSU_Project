@@ -16,7 +16,7 @@ namespace BSU_BackPackToGithub.Models
         public string BSU_Username { get; set; }
 
         [StringLength(39, MinimumLength = 1)]
-        [RegularExpression(@"^[a-z0-9](?:-?[a-z0-9]")]
+        [RegularExpression(@"^[a-z\d](?:[a-z\d] | -(?=[a-z\d]))")]
         [Required]
         public string GitHub_Username { get; set; }
 

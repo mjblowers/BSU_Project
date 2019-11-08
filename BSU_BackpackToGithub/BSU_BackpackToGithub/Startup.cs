@@ -34,7 +34,7 @@ namespace BSU_BackpackToGithub
             //services.AddDbContext<BSUStudentContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("BSUStudentContext")));
             services.AddDbContext<BSUStudentContext>(options =>
-            options.UseSqlite("Data Source=BSUStudentContext.db"));
+            options.UseSqlite(Configuration.GetConnectionString("BSUStudentContext")));
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
            {

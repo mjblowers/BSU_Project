@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BSU_BackpackToGithub.Migrations
 {
@@ -12,7 +11,7 @@ namespace BSU_BackpackToGithub.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Prefix = table.Column<string>(maxLength: 5, nullable: false),
                     Number = table.Column<int>(nullable: false),
                     Semester = table.Column<string>(maxLength: 2, nullable: false),
@@ -28,7 +27,7 @@ namespace BSU_BackpackToGithub.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     BSU_Username = table.Column<string>(maxLength: 16, nullable: false),
                     GitHub_Username = table.Column<string>(maxLength: 39, nullable: false),
                     First_Name = table.Column<string>(maxLength: 60, nullable: false),
