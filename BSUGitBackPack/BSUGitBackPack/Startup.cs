@@ -6,6 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BSUGitBackPack.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Authorization;
+
 
 namespace BSUGitBackPack
 {
@@ -19,12 +22,31 @@ namespace BSUGitBackPack
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IApplicationBuilder app, IServiceCollection services)
         {
             services.AddControllersWithViews();
 
+            //services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            //{
+            //    options.Password.RequiredLength = 10;
+            //    options.Password.RequiredUniqueChars = 3;
+            //}).AddEntityFrameworkStores<AppDbContext>();
+
             services.AddDbContext<BSUStudentContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("BSUStudentContext")));
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+        //    services.AddIdentity<IdentityUser>(options =>
+        //options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<BSUStudentContext>();
+
+
+            
+            
+            /*services.AddDefaultIdentity<IdentityUser>(options =>
+        options.SignIn.RequireConfirmedAccount = true)
+            .AddEntityFrameworkStores<ApplicationDbContext>();*/
 
             services.AddAuthentication()
         .AddGoogle(options =>

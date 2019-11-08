@@ -5,9 +5,11 @@
     <UserSecretsId>7eb9257d-0732-45eb-a1d1-76541e4645e0</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.5.1" />
     <PackageReference Include="Google.Apis.Core" Version="1.41.1" />
     <PackageReference Include="Google.Apis.Oauth2.v2" Version="1.41.1.1602" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />

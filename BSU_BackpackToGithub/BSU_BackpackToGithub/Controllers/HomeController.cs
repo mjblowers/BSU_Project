@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using BSUGitBackPack.Models;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using BSU_BackpackToGithub.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
+using BSUGitBackPack.Models;
 using System.Linq;
 
-namespace BSUGitBackPack.Controllers
+namespace BSU_BackpackToGithub.Controllers
 {
     public class HomeController : Controller
     {
@@ -17,17 +16,32 @@ namespace BSUGitBackPack.Controllers
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly UserManager<IdentityUser> userManager;
 
-        public HomeController(ILogger<HomeController> logger,
+        public HomeController(ILogger<HomeController> logger
+            ,
             SignInManager<IdentityUser> signInManager,
-             UserManager<IdentityUser> userManager)
+             UserManager<IdentityUser> userManager
+            )
         {
             _logger = logger;
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-
-        public IActionResult Index(string returnUrl)
+        public IActionResult Index()
         {
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            ViewData["Message"] = "Your application description page.";
+
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            ViewData["Message"] = "Your contact page.";
+
             return View();
         }
 
@@ -54,9 +68,7 @@ namespace BSUGitBackPack.Controllers
                 ExternalLogins = (await signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
             };
 
-            return View(model);
+            return View();
         }
-
-
     }
 }
