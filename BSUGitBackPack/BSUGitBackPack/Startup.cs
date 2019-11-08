@@ -1,16 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BSUGitBackPack.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace BSUGitBackPack
 {
@@ -30,6 +25,18 @@ namespace BSUGitBackPack
 
             services.AddDbContext<BSUStudentContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("BSUStudentContext")));
+
+            services.AddAuthentication()
+        .AddGoogle(options =>
+        {
+            IConfigurationSection googleAuthNSection =
+                Configuration.GetSection("Authentication:Google");
+
+            options.ClientId = googleAuthNSection["1006440881603-vdgjf88tq641i1r6o9k1m3skgom2k1qj.apps.googleusercontent.com"];
+            options.ClientSecret = googleAuthNSection["-mSBi_zdIjboFhYvi1CFww0G"];
+        });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +57,7 @@ namespace BSUGitBackPack
 
             app.UseRouting();
 
-            app.UseAuthorization();  
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -59,15 +66,5 @@ namespace BSUGitBackPack
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-        //public Task<AuthorizationPolicy> GetFallbackPolicyAsync()
-        //{
-        //    var result = new AuthorizationPolicyBuilder();
-        //    result = result.RequireAssertion(context =>
-        //    {
-        //        return true;
-        //    });
-
-        //    return Task.FromResult(result.Build());
-        //}
     }
 }

@@ -1,29 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BSUGitBackPack.Models;
-
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Linq;
 
 namespace BSUGitBackPack.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+            SignInManager<IdentityUser> signInManager,
+             UserManager<IdentityUser> userManager)
         {
             _logger = logger;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string returnUrl)
         {
-            return View();
+            var user = new IdentityUser { UserName = "test", Email = "test@test.com" };
+            var result = await userManager.CreateAsync(user, "password");
+            GoogleOAuthViewModel model = new GoogleOAuthViewModel
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = (await signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+            };
+
+            return View(model);
         }
 
         public IActionResult Privacy()
@@ -37,58 +50,19 @@ namespace BSUGitBackPack.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        //[HttpPost]
-        //public IActionResult Login(string userName, string password)
-        //{
-        //    if (!string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password))
-        //    {
-        //        return RedirectToAction("Login");
-        //    }
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(string returnUrl)
+        {
+            GoogleOAuthViewModel model = new GoogleOAuthViewModel
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = (await signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+            };
 
-        //    //Check the user name and password  
-        //    //Here can be implemented checking logic from the database  
+            return View();
+        }
 
-        //    if (userName == "Admin" && password == "password")
-        //    {
-
-        //        //Create the identity for the user  
-        //        var identity = new ClaimsIdentity(new[] {
-        //            new Claim(ClaimTypes.Name, userName)
-        //        }, CookieAuthenticationDefaults.AuthenticationScheme);
-
-        //        var principal = new ClaimsPrincipal(identity);
-
-        //        var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
-        //        return RedirectToAction("Index", "Home");
-        //    }
-
-        //    return View();
-        //}
-
-        //public async Task<ActionResult> IndexAsync(CancellationToken cancellationToken)
-        //{
-        //    var result = await new AuthorizationCodeMvcApp(this, new AppFlowMetadata()).
-        //        AuthorizeAsync(cancellationToken);
-
-        //    if (result.Credential != null)
-        //    {
-        //        var oauthService = new Google.Apis.Oauth2.v2.Oauth2Service(
-        //            new BaseClientService.Initializer()
-        //            {
-        //                HttpClientInitializer = result.Credential,
-        //                ApplicationName = "Mike Test"
-        //            });
-        //        var userInfo = await oauthService.Userinfo.Get().ExecuteAsync();
-        //        Console.WriteLine(result.Credential.UserId);
-        //        return View();
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("null credential seen");
-        //        return new RedirectResult(result.RedirectUri);
-        //    }
-        //}
 
     }
 }
