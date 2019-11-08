@@ -12,21 +12,22 @@ namespace BSU_BackPackToGithub.Models
         public int Id { get; set; }
 
         [StringLength(16, MinimumLength = 2)]
+        [RegularExpression("^[a-z]+[0-9]?")]
         [Required]
         public string BSU_Username { get; set; }
 
         [StringLength(39, MinimumLength = 1)]
-        [RegularExpression(@"^[a-z\d](?:[a-z\d] | -(?=[a-z\d]))")]
+        [RegularExpression("^[a-z0-9]+[-]?[a-z0-9]+")]
         [Required]
         public string GitHub_Username { get; set; }
 
         [StringLength(60, MinimumLength = 1)]
-        [RegularExpression(@"^[A-Za-z]")]
+        [RegularExpression("^[A-Z][a-z]+")]
         [Required]
         public string First_Name { get; set; }
 
         [StringLength(60, MinimumLength = 1)]
-        [RegularExpression(@"^[A-Za-z]")]
+        [RegularExpression("^[A-Z][a-z]+")]
         [Required]
         public string Last_Name { get; set; }
 
