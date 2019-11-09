@@ -59,13 +59,14 @@ namespace BSU_BackpackToGithub.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl)
         {
+            //TODO: Clean this up : we don't need an actual logged in person so this is mock data to bypass / transfer to googleoauth
             var user = new IdentityUser 
             { UserName = "mjblowers@gmail.com", 
               Email = "mjblowers@gmail.com",
               PasswordHash ="B1lahbl@ah!"
             };
 
-            var result = await userManager.CreateAsync(user, "testfart");
+            var result = await userManager.CreateAsync(user, "testtest");
 
             await signInManager.SignInAsync(user, isPersistent: false);
             GoogleOAuthViewModel model = new GoogleOAuthViewModel
@@ -113,7 +114,7 @@ namespace BSU_BackpackToGithub.Controllers
             }
             else
             {
-                email = "mjblowers@gmail.com";
+                //do nothing or transfer the data we want
             }
 
             return RedirectToAction("Create", "Students", email);
