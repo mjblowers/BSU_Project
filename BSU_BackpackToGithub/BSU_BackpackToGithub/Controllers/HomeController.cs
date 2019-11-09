@@ -30,7 +30,6 @@ namespace BSU_BackpackToGithub.Controllers
         {
             return View();
         }
-
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
@@ -60,15 +59,64 @@ namespace BSU_BackpackToGithub.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl)
         {
-            var user = new IdentityUser { UserName = "test", Email = "test@test.com" };
-            var result = await userManager.CreateAsync(user, "password");
+            var user = new IdentityUser 
+            { UserName = "mjblowers@gmail.com", 
+              Email = "mjblowers@gmail.com",
+              PasswordHash ="B1lahbl@ah!"
+            };
+
+            var result = await userManager.CreateAsync(user, "testfart");
+
+            await signInManager.SignInAsync(user, isPersistent: false);
             GoogleOAuthViewModel model = new GoogleOAuthViewModel
             {
                 ReturnUrl = returnUrl,
                 ExternalLogins = (await signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
             };
 
-            return View();
+            return View("login",model);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult ExternalLogin(string provider, string returnUrl)
+        {
+            var redirectUrl = Url.Action("ExternalLoginCallBack", "Home",
+                new { ReturnUrl = returnUrl });
+
+            var properties = signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+            return new ChallengeResult(provider, properties);
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> ExternalLoginCallBack(string returnUrl = null, string remoteError = null)
+        {
+            returnUrl = returnUrl ?? Url.Content("~/");
+            var email = "fail";
+            GoogleOAuthViewModel model = new GoogleOAuthViewModel
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = (await signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+            };
+
+            if (remoteError != null)
+            {
+                ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
+                return View("Login", model);
+            }
+
+            var info = await signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                ModelState.AddModelError(string.Empty, $"Error loading external login information: {remoteError}");
+                return View("Login", model);
+            }
+            else
+            {
+                email = "mjblowers@gmail.com";
+            }
+
+            return RedirectToAction("Create", "Students", email);
         }
     }
 }

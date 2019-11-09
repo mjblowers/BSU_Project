@@ -1,10 +1,12 @@
 ﻿
 using BSU_BackpackToGithub.Data;
+using BSU_BackpackToGithub.Models;
 using BSUGitBackPack.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,25 +33,26 @@ namespace BSU_BackpackToGithub
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddDbContext<BSUStudentContext>(options =>
-            //options.UseSqlServer(Configuration.GetConnectionString("BSUStudentContext")));
             services.AddDbContext<BSUStudentContext>(options =>
-            options.UseSqlite(Configuration.GetConnectionString("BSUStudentContext")));
-
+            options.UseSqlite(Configuration.GetConnectionString("BSUStudentContext"))
+            );
+            services.AddDbContext<AppDbContext>(options =>
+           options.UseSqlite(Configuration.GetConnectionString("AppDbContext"))
+           );
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
-           {
-               options.Password.RequiredLength = 10;
-              options.Password.RequiredUniqueChars = 3;
-            }).AddEntityFrameworkStores<BSUStudentContext>();
+          {
+              options.Password.RequireNonAlphanumeric = false;
+              options.Password.RequireUppercase = false;
+              options.Password.RequireDigit = false;
+              options.Password.RequiredUniqueChars = 0;
+          }).AddEntityFrameworkStores<AppDbContext>();
 
-            services.AddAuthentication()
+            services.AddAuthentication()               
         .AddGoogle(options =>
         {
-            IConfigurationSection googleAuthNSection =
-                Configuration.GetSection("Authentication:Google");
-
-            options.ClientId = googleAuthNSection["1006440881603-vdgjf88tq641i1r6o9k1m3skgom2k1qj.apps.googleusercontent.com"];
-           options.ClientSecret = googleAuthNSection["-mSBi_zdIjboFhYvi1CFww0G"];
+           options.ClientId = "1006440881603-vdgjf88tq641i1r6o9k1m3skgom2k1qj.apps.googleusercontent.com";
+           options.ClientSecret = "-mSBi_zdIjboFhYvi1CFww0G";
+            //options.CallbackPath = "/Home/ExternalLoginCallBack";
         });
 
 
@@ -72,6 +75,8 @@ namespace BSU_BackpackToGithub
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
+            
 
             app.UseMvc(routes =>
             {

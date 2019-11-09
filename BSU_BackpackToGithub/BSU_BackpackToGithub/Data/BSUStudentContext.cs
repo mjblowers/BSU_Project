@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BSU_BackPackToGithub.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace BSU_BackpackToGithub.Data
 {
-    public class BSUStudentContext : DbContext
+    public class BSUStudentContext : IdentityDbContext
     {
         public BSUStudentContext(DbContextOptions<BSUStudentContext> options)
             : base(options)
