@@ -10,10 +10,7 @@ namespace BSU_BackPackToGithub.Models
     public class Student
     {
         public int Id { get; set; }
-
-        [StringLength(16, MinimumLength = 2)]
-        [RegularExpression("^[a-z]+[0-9]?")]
-        [Required]
+        
         public string BSU_Username { get; set; }
 
         [StringLength(39, MinimumLength = 1)]

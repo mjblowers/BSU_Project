@@ -107,6 +107,7 @@ namespace BSU_BackpackToGithub.Controllers
             }
 
             var info = await signInManager.GetExternalLoginInfoAsync();
+            var emailToken = "";
             if (info == null)
             {
                 ModelState.AddModelError(string.Empty, $"Error loading external login information: {remoteError}");
@@ -114,10 +115,13 @@ namespace BSU_BackpackToGithub.Controllers
             }
             else
             {
-                //do nothing or transfer the data we want
+                var testing = info.Principal.Identities.FirstOrDefault();
+                var token = testing.Claims.ToList();
+                emailToken = token[4].Value;
+                
             }
-
-            return RedirectToAction("Create", "Students", email);
+            
+            return RedirectToAction("Create", "Students", new { email = emailToken });
         }
     }
 }

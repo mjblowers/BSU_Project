@@ -46,7 +46,11 @@ namespace BSU_BackpackToGithub.Controllers
         // GET: Students/Create
         public IActionResult Create(string email = null)
         {
-            return View();
+            var model = new Student
+            {
+                BSU_Username = email
+            };
+            return View(model);
         }
 
         // POST: Students/Create
