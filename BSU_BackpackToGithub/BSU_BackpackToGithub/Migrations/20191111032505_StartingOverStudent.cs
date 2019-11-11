@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BSU_BackpackToGithub.Migrations
 {
-    public partial class MyFirstMigration : Migration
+    public partial class StartingOverStudent : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +44,37 @@ namespace BSU_BackpackToGithub.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Class",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Class", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Student",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    BSU_Username = table.Column<string>(nullable: true),
+                    GitHub_Username = table.Column<string>(maxLength: 39, nullable: false),
+                    First_Name = table.Column<string>(maxLength: 60, nullable: false),
+                    Last_Name = table.Column<string>(maxLength: 60, nullable: false),
+                    Repo = table.Column<string>(maxLength: 78, nullable: false),
+                    ClassFK = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Student", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -206,6 +237,12 @@ namespace BSU_BackpackToGithub.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Class");
+
+            migrationBuilder.DropTable(
+                name: "Student");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

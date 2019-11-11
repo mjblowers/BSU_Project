@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BSU_BackpackToGithub.Migrations.AppDb
 {
-    public partial class MyFirstMigration : Migration
+    public partial class StartingOverApp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

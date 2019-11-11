@@ -21,17 +21,8 @@ namespace BSU_BackpackToGithub.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Number");
-
-                    b.Property<string>("Prefix")
-                        .IsRequired()
-                        .HasMaxLength(5);
-
-                    b.Property<string>("Semester")
-                        .IsRequired()
-                        .HasMaxLength(2);
-
-                    b.Property<int>("Year");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -43,9 +34,7 @@ namespace BSU_BackpackToGithub.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("BSU_Username")
-                        .IsRequired()
-                        .HasMaxLength(16);
+                    b.Property<string>("BSU_Username");
 
                     b.Property<int>("ClassFK");
 

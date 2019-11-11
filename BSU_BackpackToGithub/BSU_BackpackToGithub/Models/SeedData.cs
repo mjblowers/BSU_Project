@@ -22,31 +22,20 @@ namespace BSU_BackpackToGithub.Models
                 {
                     return;   // DB has been seeded
                 }
-
                 context.Class.AddRange(
                     new Class
                     {
-                        Prefix = "CS",
-                        Number = 453,
-                        Semester = "F",
-                        Year = 18
-
+                        Name = "CS-453-1-F18"
                     },
 
                     new Class
                     {
-                        Prefix = "CS",
-                        Number = 481,
-                        Semester = "S",
-                        Year = 19
+                        Name = "CS-253-4-S19"
                     },
 
                     new Class
                     {
-                        Prefix = "CS-HU",
-                        Number = 250,
-                        Semester = "Su",
-                        Year = 19
+                        Name = "CSHU-250-2-SU20"
                     }
                 );
                 context.SaveChanges();

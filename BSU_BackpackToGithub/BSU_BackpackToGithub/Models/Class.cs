@@ -11,21 +11,9 @@ namespace BSU_BackPackToGithub.Models
     {
         public int Id { get; set; }
 
-        [StringLength(5, MinimumLength = 2)]
+        [RegularExpression("[CS|CSHU][-][100-499][-][]1-9][-][F|S|SU][00-99]")]
         [Required]
-        public string Prefix { get; set; }
+        public string Name { get; set; }
 
-        [Range(100, 699)]
-        [Required]
-        public int Number { get; set; }
-
-        [StringLength(2, MinimumLength = 1)]
-        [RegularExpression(@"[F|f|S|s|Su|su]")]
-        [Required]
-        public string Semester { get; set; }
-
-        [Range(00, 99)]
-        [Required]
-        public int Year { get; set; }
     }
 }

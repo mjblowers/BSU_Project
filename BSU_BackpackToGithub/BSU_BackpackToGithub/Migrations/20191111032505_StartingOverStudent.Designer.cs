@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BSU_BackpackToGithub.Migrations
 {
     [DbContext(typeof(BSUStudentContext))]
-    [Migration("20191109040316_MyFirstMigration")]
-    partial class MyFirstMigration
+    [Migration("20191111032505_StartingOverStudent")]
+    partial class StartingOverStudent
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,17 +23,8 @@ namespace BSU_BackpackToGithub.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Number");
-
-                    b.Property<string>("Prefix")
-                        .IsRequired()
-                        .HasMaxLength(5);
-
-                    b.Property<string>("Semester")
-                        .IsRequired()
-                        .HasMaxLength(2);
-
-                    b.Property<int>("Year");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -45,9 +36,7 @@ namespace BSU_BackpackToGithub.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("BSU_Username")
-                        .IsRequired()
-                        .HasMaxLength(16);
+                    b.Property<string>("BSU_Username");
 
                     b.Property<int>("ClassFK");
 

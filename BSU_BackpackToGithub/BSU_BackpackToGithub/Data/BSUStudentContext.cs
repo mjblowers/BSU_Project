@@ -13,5 +13,6 @@ namespace BSU_BackpackToGithub.Data
 
         public DbSet<Student> Student { get; set; }
         public DbSet<Class> Class { get; set; }
+        public DbSet<Class> Class_New { get; set; }
     }
 }

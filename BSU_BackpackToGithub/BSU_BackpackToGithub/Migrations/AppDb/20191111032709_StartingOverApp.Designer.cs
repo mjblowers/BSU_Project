@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BSU_BackpackToGithub.Migrations.AppDb
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20191109041851_MyFirstMigration")]
-    partial class MyFirstMigration
+    [Migration("20191111032709_StartingOverApp")]
+    partial class StartingOverApp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
