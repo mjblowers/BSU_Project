@@ -42,3 +42,16 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
+.BsuNavBar {
+    background-color: #09347a;
+    min-height: 50px;
+    border-color: transparent;
+    border-bottom: 3px solid #f1632a;
+}
+.oswald {
+    font-family: Oswald,sans-serif;
+    color: #fff;
+    letter-spacing: 0;
+    word-spacing: 3px;
+    text-transform: uppercase;
+}
