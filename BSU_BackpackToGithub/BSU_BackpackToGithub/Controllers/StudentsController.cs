@@ -90,7 +90,7 @@ namespace BSU_BackpackToGithub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BSU_Username,GitHub_Username,First_Name,Last_Name,Repo,ClassFK")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BSU_Username,GitHub_Username,First_Name,Last_Name,ClassFK")] Student student)
         {
             if (id != student.Id)
             {
