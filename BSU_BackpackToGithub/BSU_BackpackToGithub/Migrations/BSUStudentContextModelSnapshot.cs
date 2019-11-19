@@ -16,27 +16,15 @@ namespace BSU_BackpackToGithub.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099");
 
-            modelBuilder.Entity("BSU_BackPackToGithub.Models.Class", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Class");
-                });
-
-            modelBuilder.Entity("BSU_BackPackToGithub.Models.Student", b =>
+            modelBuilder.Entity("BSU_BackpackToGithub.Models.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("BSU_Username");
 
-                    b.Property<int>("ClassID");
+                    b.Property<string>("CourseName")
+                        .IsRequired();
 
                     b.Property<string>("First_Name")
                         .IsRequired()
@@ -55,8 +43,6 @@ namespace BSU_BackpackToGithub.Migrations
                         .HasMaxLength(78);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClassID");
 
                     b.ToTable("Student");
                 });
@@ -216,14 +202,6 @@ namespace BSU_BackpackToGithub.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("BSU_BackPackToGithub.Models.Student", b =>
-                {
-                    b.HasOne("BSU_BackPackToGithub.Models.Class", "Class")
-                        .WithMany()
-                        .HasForeignKey("ClassID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

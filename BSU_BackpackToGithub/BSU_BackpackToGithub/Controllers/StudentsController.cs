@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BSU_BackPackToGithub.Models;
+using BSU_BackpackToGithub.Models;
 using BSU_BackpackToGithub.Data;
 
 namespace BSU_BackpackToGithub.Controllers
@@ -58,7 +58,7 @@ namespace BSU_BackpackToGithub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,BSU_Username,GitHub_Username,First_Name,Last_Name,Repo,ClassFK")] Student student)
+        public async Task<IActionResult> Create([Bind("Id,BSU_Username,GitHub_Username,First_Name,Last_Name,Repo,CourseName")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace BSU_BackpackToGithub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BSU_Username,GitHub_Username,First_Name,Last_Name,ClassFK")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BSU_Username,GitHub_Username,First_Name,Last_Name,CourseName")] Student student)
         {
             if (id != student.Id)
             {

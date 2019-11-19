@@ -1,4 +1,4 @@
-﻿@model BSU_BackPackToGithub.Models.Student
+﻿@model BSU_BackpackToGithub.Models.Student
 
 @{
     ViewData["Title"] = "Create";
@@ -37,15 +37,9 @@
                 <span asp-validation-for="Repo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label for="classid">Class</label>
-                <select name="classid" id="classid" class="form-control">
-                    <option value="CS253-1-f19">CS253-1-f19</option>
-                    <option value="CS253-2-f19">CS253-2-f19</option>
-                    <option value="CS453-1-f19">CS453-1-f19</option>
-                    <option value="CS453-2-f19">CS453-2-f19</option>
-                    <option value="CS361-1-f19">CS361-1-f19</option>
-                    <option value="CS-HU250-1-f19">CSHU250-1-f19</option>
-                </select>
+                <label asp-for="CourseName" class="control-label">Course</label>
+                <input asp-for="CourseName" class="form-control" />
+                <span asp-validation-for="CourseName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Submit</button>

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BSU_BackpackToGithub.Migrations
+namespace BSU_BackpackToGithub.Migrations.AppDb
 {
-    public partial class ReStart : Migration
+    public partial class StartAgain : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,19 +44,6 @@ namespace BSU_BackpackToGithub.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Class",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Class", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -165,30 +152,6 @@ namespace BSU_BackpackToGithub.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Student",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    BSU_Username = table.Column<string>(nullable: true),
-                    GitHub_Username = table.Column<string>(maxLength: 39, nullable: false),
-                    First_Name = table.Column<string>(maxLength: 60, nullable: false),
-                    Last_Name = table.Column<string>(maxLength: 60, nullable: false),
-                    Repo = table.Column<string>(maxLength: 78, nullable: false),
-                    ClassID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Student", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Student_Class_ClassID",
-                        column: x => x.ClassID,
-                        principalTable: "Class",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -225,11 +188,6 @@ namespace BSU_BackpackToGithub.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Student_ClassID",
-                table: "Student",
-                column: "ClassID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -250,16 +208,10 @@ namespace BSU_BackpackToGithub.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Student");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Class");
         }
     }
 }

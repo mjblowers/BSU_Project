@@ -1,11 +1,8 @@
-﻿using BSU_BackpackToGithub.Data;
-using BSU_BackPackToGithub.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using BSU_BackpackToGithub.Data;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BSU_BackpackToGithub.Models
 {
@@ -18,24 +15,20 @@ namespace BSU_BackpackToGithub.Models
                     DbContextOptions<BSUStudentContext>>()))
             {
                 // Look for any movies.
-                if (context.Class.Any())
+                if (context.Student.Any())
                 {
                     return;   // DB has been seeded
                 }
-                context.Class.AddRange(
-                    new Class
-                    {
-                        Name = "CS-453-1-F18"
-                    },
 
-                    new Class
+                context.Student.AddRange(
+                    new Student
                     {
-                        Name = "CS-253-4-S19"
-                    },
-
-                    new Class
-                    {
-                        Name = "CSHU-250-2-SU20"
+                        BSU_Username = "joebobsmith",
+                        GitHub_Username = "joe1234",
+                        First_Name = "JoeBob",
+                        Last_Name = "Smith",
+                        Repo = "https://github.com/joe1234/CS-HU-250-F19",
+                        CourseName = "CS-HU-250-1-F19"
                     }
                 );
                 context.SaveChanges();
