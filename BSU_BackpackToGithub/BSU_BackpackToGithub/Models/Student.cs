@@ -33,7 +33,18 @@ namespace BSU_BackPackToGithub.Models
         public string Repo { get; set; }
 
         [Required]
-        [ForeignKey("ClassForeignKey")]
-        public int ClassFK { get; set; }
+        [ForeignKey("Class")]
+        public int ClassID { get; set; }
+        public virtual Class Class { get; set; }
+    }
+
+    public class Class
+    {
+        public int Id { get; set; }
+
+        [RegularExpression("[CS|CSHU][-][100-499][-][]1-9][-][F|S|SU][00-99]")]
+        [Required]
+        public string Name { get; set; }
+
     }
 }

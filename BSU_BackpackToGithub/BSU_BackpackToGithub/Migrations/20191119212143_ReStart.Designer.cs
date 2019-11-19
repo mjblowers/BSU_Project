@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BSU_BackpackToGithub.Migrations
 {
     [DbContext(typeof(BSUStudentContext))]
-    [Migration("20191111032505_StartingOverStudent")]
-    partial class StartingOverStudent
+    [Migration("20191119212143_ReStart")]
+    partial class ReStart
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,7 +38,7 @@ namespace BSU_BackpackToGithub.Migrations
 
                     b.Property<string>("BSU_Username");
 
-                    b.Property<int>("ClassFK");
+                    b.Property<int>("ClassID");
 
                     b.Property<string>("First_Name")
                         .IsRequired()
@@ -57,6 +57,8 @@ namespace BSU_BackpackToGithub.Migrations
                         .HasMaxLength(78);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClassID");
 
                     b.ToTable("Student");
                 });
@@ -216,6 +218,14 @@ namespace BSU_BackpackToGithub.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("BSU_BackPackToGithub.Models.Student", b =>
+                {
+                    b.HasOne("BSU_BackPackToGithub.Models.Class", "Class")
+                        .WithMany()
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

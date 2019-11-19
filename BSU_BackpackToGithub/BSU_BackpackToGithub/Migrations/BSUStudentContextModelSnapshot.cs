@@ -36,7 +36,7 @@ namespace BSU_BackpackToGithub.Migrations
 
                     b.Property<string>("BSU_Username");
 
-                    b.Property<int>("ClassFK");
+                    b.Property<int>("ClassID");
 
                     b.Property<string>("First_Name")
                         .IsRequired()
@@ -55,6 +55,8 @@ namespace BSU_BackpackToGithub.Migrations
                         .HasMaxLength(78);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClassID");
 
                     b.ToTable("Student");
                 });
@@ -214,6 +216,14 @@ namespace BSU_BackpackToGithub.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("BSU_BackPackToGithub.Models.Student", b =>
+                {
+                    b.HasOne("BSU_BackPackToGithub.Models.Class", "Class")
+                        .WithMany()
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
