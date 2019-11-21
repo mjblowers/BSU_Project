@@ -28,7 +28,7 @@ namespace BSU_BackpackToGithub.Models
         [Required]
         public string Last_Name { get; set; }
 
-        [StringLength(78, MinimumLength = 36)]
+        [RegularExpression("^https://github.com/[a-z0-9]+[-]?[a-z0-9]+/C(S|SHU)-[1-9][0-9][0-9]-[1-9]-(F|S|SU)[0-9][0-9].git")]
         [Required]
         public string Repo { get; set; }
 

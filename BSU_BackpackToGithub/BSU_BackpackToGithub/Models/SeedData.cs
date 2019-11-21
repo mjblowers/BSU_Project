@@ -23,12 +23,12 @@ namespace BSU_BackpackToGithub.Models
                 context.Student.AddRange(
                     new Student
                     {
-                        BSU_Username = "joebobsmith",
+                        BSU_Username = "joebobsmith@u.boisestate.edu",
                         GitHub_Username = "joe1234",
-                        First_Name = "JoeBob",
+                        First_Name = "Joebob",
                         Last_Name = "Smith",
-                        Repo = "https://github.com/joe1234/CS-HU-250-F19",
-                        CourseName = "CS-HU-250-1-F19"
+                        Repo = "https://github.com/joe1234/CSHU-253-1-F18.git",
+                        CourseName = "CSHU-253-1-F18"
                     }
                 );
                 context.SaveChanges();
