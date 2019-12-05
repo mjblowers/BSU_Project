@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace BSU_BackpackToGithub
 {
@@ -50,9 +51,10 @@ namespace BSU_BackpackToGithub
             services.AddAuthentication()               
         .AddGoogle(options =>
         {
-           options.ClientId = "1006440881603-vdgjf88tq641i1r6o9k1m3skgom2k1qj.apps.googleusercontent.com";
-           options.ClientSecret = "-mSBi_zdIjboFhYvi1CFww0G";
-            //options.CallbackPath = "/Home/ExternalLoginCallBack";
+           var googleClientId = Environment.GetEnvironmentVariable("Shane_Google_Oauth_Id");
+           var googleClientSecret = Environment.GetEnvironmentVariable("Shane_Google_Oauth_Secret");
+           options.ClientId = googleClientId;
+           options.ClientSecret = googleClientSecret;
         });
 
 

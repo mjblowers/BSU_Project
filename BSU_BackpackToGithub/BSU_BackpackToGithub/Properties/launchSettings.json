@@ -12,14 +12,18 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Shane_Google_Oauth_Id": "1006440881603-vdgjf88tq641i1r6o9k1m3skgom2k1qj.apps.googleusercontent.com",
+        "Shane_Google_Oauth_Secret": "-mSBi_zdIjboFhYvi1CFww0G"
       }
     },
     "BSU_BackpackToGithub": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Shane_Google_Oauth_Id": "1006440881603-vdgjf88tq641i1r6o9k1m3skgom2k1qj.apps.googleusercontent.com",
+        "Shane_Google_Oauth_Secret": "-mSBi_zdIjboFhYvi1CFww0G"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
     }
