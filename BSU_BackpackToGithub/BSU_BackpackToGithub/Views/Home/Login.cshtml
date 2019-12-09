@@ -34,14 +34,31 @@
 
                             @foreach (var provider in Model.ExternalLogins)
                             {
+                                if(provider.DisplayName=="Google"){
                                 <button type="submit" class="card p-3 m-auto text-center" name="provider" value="@provider.Name"
                                         title="Login using your @provider.DisplayName account">
+                                    
                                     <span>
-                                        <img id="google-logo" src="../images/google-logo-transparent.png" alt="ggogle-logo" />
+                                            <img id="google-logo" src="../images/google-logo-transparent.png" alt="ggogle-logo" />
+
                                         <span>Sign in with @provider.DisplayName</span>
                                     </span>
-                                </button>
+                                    </button>
+                                        } else if(provider.DisplayName=="OAuth"){
+                                            <button type="submit" class="card p-3 m-auto text-center" name="provider" value="GitHub"
+                                        title="Login using your GitHub account">
+
+                                    <span>
+                                            <img id="github-logo" src="../images/githubimage.png" alt="githubimage.png" />
+
+                                        <span>Sign in with GitHub</span>
+                                    </span>
+                                    </button>
+                                        }
+                                
+
                             }
+
 
                         </form>
                     }
