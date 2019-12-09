@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BSU_BackPackToGithub.Models
+namespace BSU_BackpackToGithub.Models
 {
     public class Student
     {
@@ -28,12 +28,12 @@ namespace BSU_BackPackToGithub.Models
         [Required]
         public string Last_Name { get; set; }
 
-        [StringLength(78, MinimumLength = 36)]
+        [RegularExpression("^https://github.com/[a-z0-9]+[-]?[a-z0-9]+/C(S|SHU)-[1-9][0-9][0-9]-[1-9]-(F|S|SU)[0-9][0-9].git")]
         [Required]
         public string Repo { get; set; }
 
+        [RegularExpression("^C(S|SHU)-[1-9][0-9][0-9]-[1-9]-(F|S|SU)[0-9][0-9]")]
         [Required]
-        [ForeignKey("ClassForeignKey")]
-        public int ClassFK { get; set; }
+        public string CourseName { get; set; }
     }
 }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BSU_BackpackToGithub.Migrations
 {
     [DbContext(typeof(BSUStudentContext))]
-    [Migration("20191111032505_StartingOverStudent")]
-    partial class StartingOverStudent
+    [Migration("20191121195437_RepoRegex")]
+    partial class RepoRegex
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,27 +18,15 @@ namespace BSU_BackpackToGithub.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099");
 
-            modelBuilder.Entity("BSU_BackPackToGithub.Models.Class", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Class");
-                });
-
-            modelBuilder.Entity("BSU_BackPackToGithub.Models.Student", b =>
+            modelBuilder.Entity("BSU_BackpackToGithub.Models.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("BSU_Username");
 
-                    b.Property<int>("ClassFK");
+                    b.Property<string>("CourseName")
+                        .IsRequired();
 
                     b.Property<string>("First_Name")
                         .IsRequired()
@@ -53,8 +41,7 @@ namespace BSU_BackpackToGithub.Migrations
                         .HasMaxLength(60);
 
                     b.Property<string>("Repo")
-                        .IsRequired()
-                        .HasMaxLength(78);
+                        .IsRequired();
 
                     b.HasKey("Id");
 

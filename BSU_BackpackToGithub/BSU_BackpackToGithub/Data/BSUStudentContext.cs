@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using BSU_BackPackToGithub.Models;
+using BSU_BackpackToGithub.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace BSU_BackpackToGithub.Data
@@ -12,7 +12,5 @@ namespace BSU_BackpackToGithub.Data
         }
 
         public DbSet<Student> Student { get; set; }
-        public DbSet<Class> Class { get; set; }
-        public DbSet<Class> Class_New { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BSU_BackPackToGithub.Models.Student>
+﻿@model IEnumerable<BSU_BackpackToGithub.Models.Student>
 
 @{
     ViewData["Title"] = "Index";
@@ -28,7 +28,7 @@
                 @Html.DisplayNameFor(model => model.Repo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ClassFK)
+                @Html.DisplayNameFor(model => model.CourseName)
             </th>
             <th></th>
         </tr>
@@ -52,7 +52,7 @@
                 @Html.DisplayFor(modelItem => item.Repo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ClassFK)
+                @Html.DisplayFor(modelItem => item.CourseName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

@@ -16,8 +16,7 @@ using System.Security.Claims;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Authentication;
-
-
+using System;
 
 namespace BSU_BackpackToGithub
 {
@@ -57,9 +56,10 @@ namespace BSU_BackpackToGithub
             services.AddAuthentication()               
         .AddGoogle(options =>
         {
-           options.ClientId = "1006440881603-vdgjf88tq641i1r6o9k1m3skgom2k1qj.apps.googleusercontent.com";
-           options.ClientSecret = "-mSBi_zdIjboFhYvi1CFww0G";
-            //options.CallbackPath = "/Home/ExternalLoginCallBack";
+           var googleClientId = Environment.GetEnvironmentVariable("Shane_Google_Oauth_Id");
+           var googleClientSecret = Environment.GetEnvironmentVariable("Shane_Google_Oauth_Secret");
+           options.ClientId = googleClientId;
+           options.ClientSecret = googleClientSecret;
         });
 
         services.AddAuthentication(options =>
@@ -72,8 +72,12 @@ namespace BSU_BackpackToGithub
 
                 .AddOAuth("GitHub", options =>
                 {
-                    options.ClientId = Configuration["GitHub:ClientId"];
-                    options.ClientSecret = Configuration["GitHub:ClientSecret"];
+                    var githubClientId=Environment.GetEnvironmentVariable("Shane_GitHub_Oauth_ClientId");
+                    var githubClientSecret=Environment.GetEnvironmentVariable("Shane_GitHub_Oauth_ClientSecret");
+                    
+                    options.ClientId = githubClientId;
+                    options.ClientSecret = githubClientSecret;
+
                     options.CallbackPath = new PathString("/signin-github");
 
                     options.AuthorizationEndpoint = "https://github.com/login/oauth/authorize";
